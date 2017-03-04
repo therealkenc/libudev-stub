@@ -27,4 +27,4 @@ There is also an environment variable to turn the stub library into a passthroug
 export LIBUDEV_STUB_PASSTHROUGH=/lib/x86_64-linux-gnu/libudev.so.1
 ```
 <br><br><br>
-![](https://raw.githubusercontent.com/therealkenc/libudev-stub/master/docs/chrome-screencap.png)
+<img src="https://raw.githubusercontent.com/therealkenc/libudev-stub/master/docs/chrome-screencap.png" width="640">
