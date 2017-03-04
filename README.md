@@ -7,7 +7,7 @@ That is just enough to make Google's [chromium](https://www.chromium.org/Home) h
 
 Note however that graphical applications are [**not supported**](https://wpdev.uservoice.com/forums/266908-command-prompt-console-bash-on-ubuntu-on-windo/suggestions/13250499-support-for-x-server-running-in-windows-on-the-sam?tracking_code=6be7122042c59b213451b9198f208f27) by Microsoft. You are on your own here until MSFT has cleared their development backlog of commandline development use case scenarios.
 
-There is no fancy installer yet, but building is pretty painless.
+There is no fancy installer yet, but building is pretty painless. It requires a C++11 compiler.
 ```
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt-get update
@@ -26,3 +26,5 @@ There is also an environment variable to turn the stub library into a passthroug
 ```
 export LIBUDEV_STUB_PASSTHROUGH=/lib/x86_64-linux-gnu/libudev.so.1
 ```
+<br><br><br>
+![](https://raw.githubusercontent.com/therealkenc/libudev-stub/master/docs/chrome-screencap.png)
