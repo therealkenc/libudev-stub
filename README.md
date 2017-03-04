@@ -9,7 +9,11 @@ Note however that graphical applications are [**not supported**](https://wpdev.u
 
 There is no fancy installer yet, but building is pretty painless.
 ```
-sudo apt-get install build-essential git cmake ninja-build libudev-dev
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt-get install build-essential git cmake ninja-build libudev-dev gcc-6 g++-6
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 200
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 200
 mkdir somewhere && cd somewhere
 git clone https://github.com/therealkenc/libudev-stub.git
 cd libudev-stub/build
