@@ -1,6 +1,6 @@
 # libudev-stub
 
-[TL;DR] get the releases [here](https://github.com/therealkenc/libudev-stub/releases).
+[TL;DR It lets you run chrome on WSL. Get the release build [here](https://github.com/therealkenc/libudev-stub/releases).]
 
 [Libudev-stub](https://github.com/therealkenc/libudev-stub) is a shim library for `libudev`, created primarily for the Windows Subsystem for Linux [WSL](https://msdn.microsoft.com/en-us/commandline/wsl/about). Theoretically it could be useful for other Linux-ish systems that lack udev support. [Udev](https://www.freedesktop.org/software/systemd/man/udev.html) is part of [systemd](https://www.freedesktop.org/wiki/Software/systemd/). It provides a well-known interface for device events (such as hot plugging of usb dongles and cameras) for many Linux distributions like [Ubuntu](https://www.ubuntu.com/). Unfortunately, WSL currently lacks much of the functionality required to support `udev`; at least as of [Windows Insider](https://insider.windows.com/) build 15046.
 
