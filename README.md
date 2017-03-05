@@ -1,4 +1,7 @@
 # libudev-stub
+
+[TL;DR] get the releases [here](https://github.com/therealkenc/libudev-stub/releases).
+
 [Libudev-stub](https://github.com/therealkenc/libudev-stub) is a shim library for `libudev`, created primarily for the Windows Subsystem for Linux [WSL](https://msdn.microsoft.com/en-us/commandline/wsl/about). Theoretically it could be useful for other Linux-ish systems that lack udev support. [Udev](https://www.freedesktop.org/software/systemd/man/udev.html) is part of [systemd](https://www.freedesktop.org/wiki/Software/systemd/). It provides a well-known interface for device events (such as hot plugging of usb dongles and cameras) for many Linux distributions like [Ubuntu](https://www.ubuntu.com/). Unfortunately, WSL currently lacks much of the functionality required to support `udev`; at least as of [Windows Insider](https://insider.windows.com/) build 15046.
 
 To work around this, `libudev-stub` implements a subset of the `libudev` interface that does not actually communicate with the kernel. The theory of operation is pretty straightforward. When an application uses `libudev` to ask for a list of devices, the stub library says there aren't any devices worth mentioning. When an application asks to monitor for device events, the library obliges, and then never raises any event notifications. The code is structured in a way that a static device list could be faked, but it does not do so as of this initial relase.
@@ -11,8 +14,7 @@ Note however that graphical applications are [**not supported**](https://wpdev.u
 The installer leaves the stock `libudev1` debian package in place, but changes the system `libudev.so.1` symlink to the `libudev-stub` version. This is harmless on WSL (since stock libudev doesn't work anyway), but you should not do this on a Real Ubuntu machine unless that is _really_ what you want.
 
 ```
-\# TODO release instructions once download url is ready
-wget <somewhere>
+wget https://github.com/therealkenc/libudev-stub/releases/download/v0.9.0/libudev-stub-0.9.0-WSL.deb
 sudo dpkg -i libudev-stub-0.9.0-WSL.deb
 ```
 
