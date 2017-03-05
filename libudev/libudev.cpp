@@ -18,6 +18,7 @@
 ***/
 
 #include <stdlib.h>
+#include "config.h"
 #include "macro.h"
 #include "logging.h"
 #include "libudev.h"
@@ -25,6 +26,14 @@
 #include "libudev1.h"
 
 using namespace libudev_stub;
+
+class StubEntry {
+public:
+  StubEntry() {
+    LOG() << "Using libudev-stub " << STR(LIBUDEV_STUB_VERSION);
+  }
+};
+static StubEntry entry;
 
 extern "C" {
 
