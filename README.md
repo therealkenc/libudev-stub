@@ -11,12 +11,18 @@ All of which is just enough to make Google's [chromium](https://www.chromium.org
 Note however that graphical applications are [**not supported**](https://wpdev.uservoice.com/forums/266908-command-prompt-console-bash-on-ubuntu-on-windo/suggestions/13250499-support-for-x-server-running-in-windows-on-the-sam?tracking_code=6be7122042c59b213451b9198f208f27) by Microsoft. You are _on your own_ here until MSFT has cleared their development backlog of commandline development use case scenarios. See the WSL [FAQ](https://msdn.microsoft.com/en-us/commandline/wsl/faq) for more.
 
 ## Release installation
-The installer leaves the stock `libudev1` debian package in place, but changes the system `libudev.so.1` symlink to the `libudev-stub` version. This is harmless on WSL (since stock libudev doesn't work anyway), but you should not do this on a Real Ubuntu machine unless that is _really_ what you want.
+The installer leaves the stock `libudev1` debian package in place, but changes the system `libudev.so.1` symlink to the `libudev-stub` version. This is harmless on WSL (since stock libudev doesn't work anyway), but you should not do this on a Real Ubuntu machine unless that is _really_ what you want. Chrome also requires a work-around for the PulseAudio 8 library shipped with Ubuntu Xenial 16.04 in order for Chrome to launch. 
 
 ```
+# Download the stable or development Chrome .deb package - dev if you want headless functionality
+sudo dpkg -i google-chrome-unstable_current_amd64.deb
+sudo apt -f install                       # probably
+wget https://github.com/therealkenc/libudev-stub/releases/download/v0.9.0/libpulse0_8.0-0ubuntu3.2ppa1_amd64.deb
+sudo dpkg -i libpulse0_8.0-0ubuntu3.2ppa1_amd64.deb
 wget https://github.com/therealkenc/libudev-stub/releases/download/v0.9.0/libudev-stub-0.9.0-WSL.deb
-sudo dpkg -i libudev-stub-0.9.0-WSL.deb
+sudo dpkg -i libudev-stub-0.9.0-WSL.deb   # doing this **last** is important
 ```
+The libudev-stub symbolic link will get blown away by `apt-get <almost anything>`, so if you get an error right out of the gate it probably means the link has been clobbered. Just reinstall the libudev-stub .deb to fix it up.
 
 ## Source builds
 Builds require a C++11 compiler, so `install-deps.sh` will install g++-6 from [ppa:ubuntu-toolchain-r/test](https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test). This will **not** change your system's default compiler.
