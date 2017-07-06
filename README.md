@@ -2,7 +2,7 @@
 
 [TL;DR It lets you run chrome on WSL. Get the release build [here](https://github.com/therealkenc/libudev-stub/releases).]
 
-[Libudev-stub](https://github.com/therealkenc/libudev-stub) is a shim library for `libudev`, created primarily for the Windows Subsystem for Linux [WSL](https://msdn.microsoft.com/en-us/commandline/wsl/about). Theoretically it could be useful for other Linux-ish systems that lack udev support. [Udev](https://www.freedesktop.org/software/systemd/man/udev.html) is part of [systemd](https://www.freedesktop.org/wiki/Software/systemd/). It provides a well-known interface for device events (such as hot plugging of usb dongles and cameras) for many Linux distributions like [Ubuntu](https://www.ubuntu.com/). Unfortunately, WSL currently lacks much of the functionality required to support `udev`; at least as of [Windows Insider](https://insider.windows.com/) build 15046.
+[Libudev-stub](https://github.com/therealkenc/libudev-stub) is a shim library for `libudev`, created primarily for the Windows Subsystem for Linux [WSL](https://msdn.microsoft.com/en-us/commandline/wsl/about). Theoretically it could be useful for other Linux-ish systems that lack udev support. [Udev](https://www.freedesktop.org/software/systemd/man/udev.html) is part of [systemd](https://www.freedesktop.org/wiki/Software/systemd/). It provides a well-known interface for device events (such as hot plugging of usb dongles and cameras) for many Linux distributions like [Ubuntu](https://www.ubuntu.com/). Unfortunately, WSL currently lacks much of the functionality required to support `udev`; at least as of [Windows Insider](https://insider.windows.com/) build 16232.
 
 To work around this, `libudev-stub` implements a subset of the `libudev` interface and does not actually communicate with the kernel. The theory of operation is pretty straightforward. When an application uses `libudev` to ask for a list of devices, the stub library says there aren't any devices worth mentioning. When an application asks to monitor for device events, the library obliges, and then never raises any event notifications. The code is structured in a way that a static device list could be faked, but it does not do so as of right now.
 
@@ -15,6 +15,7 @@ The installer leaves the stock `libudev1` debian package in place, but changes t
 
 ```
 # Download the stable or development Chrome .deb package - dev if you want headless functionality
+wget https://dl.google.com/linux/direct/google-chrome-unstable_current_amd64.deb
 sudo dpkg -i google-chrome-unstable_current_amd64.deb
 sudo apt -f install                       # probably
 wget https://github.com/therealkenc/libudev-stub/releases/download/v0.9.0/libpulse0_8.0-0ubuntu3.2ppa1_amd64.deb
