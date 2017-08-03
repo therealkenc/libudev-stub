@@ -14,12 +14,13 @@ Note however that graphical applications are [**not supported**](https://wpdev.u
 The installer leaves the stock `libudev1` debian package in place, but changes the system `libudev.so.1` symlink to the `libudev-stub` version. This is harmless on WSL (since stock libudev doesn't work anyway), but you should not do this on a Real Ubuntu machine unless that is _really_ what you want. Chrome also requires a work-around for the PulseAudio 8 library shipped with Ubuntu Xenial 16.04 in order for Chrome to launch. 
 
 ```
+# assumes you have ubuntu-desktop installed which includes stock libpulse
+sudo add-apt-repository ppa:therealkenc/wsl-pulseaudio
+sudo apt-get update && sudo apt-get upgrade
 # Download the stable or development Chrome .deb package - dev if you want headless functionality
 wget https://dl.google.com/linux/direct/google-chrome-unstable_current_amd64.deb
 sudo dpkg -i google-chrome-unstable_current_amd64.deb
 sudo apt -f install                       # probably
-wget https://github.com/therealkenc/libudev-stub/releases/download/v0.9.0/libpulse0_8.0-0ubuntu3.2ppa1_amd64.deb
-sudo dpkg -i libpulse0_8.0-0ubuntu3.2ppa1_amd64.deb
 wget https://github.com/therealkenc/libudev-stub/releases/download/v0.9.0/libudev-stub-0.9.0-WSL.deb
 sudo dpkg -i libudev-stub-0.9.0-WSL.deb   # doing this **last** is important
 ```
