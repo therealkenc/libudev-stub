@@ -31,5 +31,5 @@ sudo service dbus start
 # Try firefox. If firefox doesn't launch all hope is lost for chrome
 firefox
 # Finally:
-google-chrome --no-sandbox
+google-chrome-unstable --no-sandbox
 ```
