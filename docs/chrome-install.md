@@ -1,5 +1,5 @@
 # Full installation of Chrome on WSL from virgin install 
-#### This assumes you have [VcXsrv](https://sourceforge.net/projects/vcxsrv/) on Windows set up. Choose multiple windows, display 0, start no client, _disable_ native opengl and _enable_ disable access control (sic). [Do this even if you think you know different.]
+#### This assumes you have [VcXsrv](https://sourceforge.net/projects/vcxsrv/) on Windows set up. Choose multiple windows, display 0, start no client, _disable_ native opengl (sic). [Do this even if you think you know different.]
 
 From `CMD`:
 ```
