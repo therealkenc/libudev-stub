@@ -2,6 +2,11 @@
 
 [TL;DR It lets you run chrome on WSL. Get the release build [here](https://github.com/therealkenc/libudev-stub/releases).]
 
+**UPDATE:** Chrome now runs out of the box on WSL with very minor caveats as of insider build [16273](https://msdn.microsoft.com/en-us/commandline/wsl/release_notes?f=255&MSPPError=-2147217396#build-16273) released August 23, 2017, which should make its way into the [Fall Creator's Update](https://www.microsoft.com/en-us/windows/upcoming-features) soon enough. Steps to launch can be found [here](https://github.com/Microsoft/BashOnWindows/issues/648#issuecomment-324562271). [Libudev-stub](https://github.com/therealkenc/libudev-stub) will be left up for a while, but mostly you can disregard everything below if you are on the bleeding edge already.
+
+<br>
+<br>
+
 [Libudev-stub](https://github.com/therealkenc/libudev-stub) is a shim library for `libudev`, created primarily for the Windows Subsystem for Linux [WSL](https://msdn.microsoft.com/en-us/commandline/wsl/about). Theoretically it could be useful for other Linux-ish systems that lack udev support. [Udev](https://www.freedesktop.org/software/systemd/man/udev.html) is part of [systemd](https://www.freedesktop.org/wiki/Software/systemd/). It provides a well-known interface for device events (such as hot plugging of usb dongles and cameras) for many Linux distributions like [Ubuntu](https://www.ubuntu.com/). Unfortunately, WSL currently lacks much of the functionality required to support `udev`; at least as of [Windows Insider](https://insider.windows.com/) build 16257.
 
 To work around this, `libudev-stub` implements a subset of the `libudev` interface and does not actually communicate with the kernel. The theory of operation is pretty straightforward. When an application uses `libudev` to ask for a list of devices, the stub library says there aren't any devices worth mentioning. When an application asks to monitor for device events, the library obliges, and then never raises any event notifications. The code is structured in a way that a static device list could be faked, but it does not do so as of right now.
