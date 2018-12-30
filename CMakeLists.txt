@@ -1,14 +1,9 @@
 cmake_minimum_required (VERSION 3.5)
 project(libudev_stub)
 
-# libudev-stub requires a C++11 compiler
-include(CMakeForceCompiler)
-cmake_force_c_compiler(gcc-6 GCC)
-cmake_force_cxx_compiler(g++-6 GCC)
-
 set(CPACK_PACKAGE_VERSION_MAJOR 0)
 set(CPACK_PACKAGE_VERSION_MINOR 9)
-set(CPACK_PACKAGE_VERSION_PATCH 0)
+set(CPACK_PACKAGE_VERSION_PATCH 1)
 set(LIBUDEV_STUB_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
 set(LIBUDEV_SOVERSION_MAJOR "1")
 set(LIBUDEV_SOVERSION "1.6.4")

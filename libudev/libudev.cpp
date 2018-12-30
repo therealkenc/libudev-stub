@@ -25,8 +25,14 @@
 #include "libudev-internal.h"
 #include "libudev1.h"
 
+bool g_logging = false;
+
 using namespace libudev_stub;
 
+#if 0
+//  This was included to fire when the stub is loaded
+//  Becomes verbose if one is loading libudev a lot,
+//  so forget it; the logging was for debug purposes anyway
 class StubEntry {
 public:
   StubEntry() {
@@ -34,6 +40,7 @@ public:
   }
 };
 static StubEntry entry;
+#endif
 
 extern "C" {
 
@@ -69,6 +76,9 @@ _public_ struct udev* udev_new(void) {
   struct udev* new_udev = new udev;
   new_udev->loader = NULL;
   new_udev->loader_udev = NULL;
+  char* logenv = secure_getenv("LIBUDEV_STUB_LOGGING");
+  g_logging = (logenv) ? false : true;
+
   char* library = secure_getenv("LIBUDEV_STUB_PASSTHROUGH");
   if (library) {
     LOG() << "found LIBUDEV_STUB_PASSTHROUGH = " << library;

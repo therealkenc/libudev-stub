@@ -198,6 +198,7 @@ _public_ int udev_monitor_filter_remove(struct udev_monitor* udev_monitor) {
       ret = loader->udev_monitor_filter_remove(udev_monitor->proxy);
     }
   }
+  return ret;
 }
 
 }  // extern "C"
