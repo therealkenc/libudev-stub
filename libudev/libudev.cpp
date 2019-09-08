@@ -76,10 +76,10 @@ _public_ struct udev* udev_new(void) {
   struct udev* new_udev = new udev;
   new_udev->loader = NULL;
   new_udev->loader_udev = NULL;
-  char* logenv = secure_getenv("LIBUDEV_STUB_LOGGING");
+  char* logenv = getenv("LIBUDEV_STUB_LOGGING");
   g_logging = (logenv) ? false : true;
 
-  char* library = secure_getenv("LIBUDEV_STUB_PASSTHROUGH");
+  char* library = getenv("LIBUDEV_STUB_PASSTHROUGH");
   if (library) {
     LOG() << "found LIBUDEV_STUB_PASSTHROUGH = " << library;
     LibUdev1Loader* loader = new LibUdev1Loader();
