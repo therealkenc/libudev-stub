@@ -10,4 +10,4 @@ install(TARGETS udev
   LIBRARY DESTINATION lib
   PUBLIC_HEADER DESTINATION include
 )
-install(FILES "${CMAKE_BINARY_DIR}/libudev.pc" DESTINATION lib/pkgconfig COMPONENT config)
+install(FILES "${CMAKE_BINARY_DIR}/libudev/libudev.pc" DESTINATION lib/pkgconfig COMPONENT config)
