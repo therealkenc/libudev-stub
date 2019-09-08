@@ -1,11 +1,13 @@
+set(DEST_DIR "${CMAKE_INSTALL_PREFIX}")
+set(PRIVATE_LIBS -ludev)
+CONFIGURE_FILE("template_pc.in" "libudev.pc" @ONLY)
 file(GLOB udev_src "*.cpp")
-add_library(udev-stub SHARED ${udev_src})
-set_property(TARGET udev-stub PROPERTY SOVERSION "${LIBUDEV_SOVERSION_MAJOR}")
-set_property(TARGET udev-stub PROPERTY VERSION "${LIBUDEV_SOVERSION}")
-add_custom_command(TARGET udev-stub
-  POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E create_symlink
-  "${CMAKE_BINARY_DIR}/out/lib/libudev-stub.so.${LIBUDEV_SOVERSION}"
-  "${CMAKE_BINARY_DIR}/out/lib/libudev.so.${LIBUDEV_SOVERSION_MAJOR}"
+add_library(udev SHARED ${udev_src} "libudev.pc")
+set_property(TARGET udev PROPERTY SOVERSION "${LIBUDEV_SOVERSION_MAJOR}")
+set_property(TARGET udev PROPERTY VERSION "${LIBUDEV_SOVERSION}")
+set_target_properties(udev PROPERTIES PUBLIC_HEADER libudev.h)
+install(TARGETS udev
+  LIBRARY DESTINATION lib
+  PUBLIC_HEADER DESTINATION include
 )
-install(TARGETS udev-stub DESTINATION .)
+install(FILES "${CMAKE_BINARY_DIR}/libudev.pc" DESTINATION lib/pkgconfig COMPONENT config)

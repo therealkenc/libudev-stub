@@ -7,7 +7,10 @@ using namespace libudev_stub;
 
 extern "C" {
 
-struct udev_hwdb {};
+struct udev_hwdb 
+{
+  int _reserved;
+};
 
 _public_ struct udev_hwdb* udev_hwdb_ref(struct udev_hwdb* hwdb) {
   LOG() << "udev_hwdb_ref()";

@@ -7,7 +7,10 @@ using namespace libudev_stub;
 
 extern "C" {
 
-struct udev_queue {};
+struct udev_queue 
+{
+  int _reserved;
+};
 
 _public_ struct udev_queue* udev_queue_ref(struct udev_queue* udev_queue) {
   LOG() << "udev_queue_ref()";

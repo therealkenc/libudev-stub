@@ -17,7 +17,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/out/bin")
 include_directories("${PROJECT_BINARY_DIR}")
 add_subdirectory(libudev)
 add_executable(libudev_test udev-test.cpp)
-target_link_libraries(libudev_test dl udev-stub)
+target_link_libraries(libudev_test dl udev)
 
 set(CPACK_GENERATOR "DEB")
 set(CPACK_SYSTEM_NAME "WSL")
@@ -30,3 +30,4 @@ set(CPACK_CMAKE_GENERATOR Ninja)
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "libudev stub library for WSL (${LIBUDEV_STUB_VERSION})")
 set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_SOURCE_DIR}/scripts/postinst")
 include(CPack)
+

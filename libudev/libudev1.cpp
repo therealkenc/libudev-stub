@@ -5,11 +5,9 @@
 
 namespace libudev_stub {
 
-LibUdev1Loader::LibUdev1Loader() {
-}
+LibUdev1Loader::LibUdev1Loader() {}
 
-LibUdev1Loader::~LibUdev1Loader() {
-}
+LibUdev1Loader::~LibUdev1Loader() {}
 
 bool LibUdev1Loader::load(const std::string& library_path) {
   library_ = dlopen(library_path.c_str(), RTLD_LAZY);
