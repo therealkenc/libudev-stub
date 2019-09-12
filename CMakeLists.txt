@@ -17,6 +17,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/out/bin")
 include_directories("${PROJECT_BINARY_DIR}")
 add_subdirectory(libudev)
 add_executable(libudev_test udev-test.cpp)
+target_include_directories(libudev_test PUBLIC "${PROJECT_SOURCE_DIR}/libudev")
 target_link_libraries(libudev_test dl udev)
 
 set(CPACK_GENERATOR "DEB")
